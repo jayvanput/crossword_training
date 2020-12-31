@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
+require('dotenv').config();
 
 const app = express();
 
@@ -18,7 +19,17 @@ app.get('/', (req, res) => {
     });
 });
 
-const PORT = 4000;
-app.listen(PORT, () => {
-    console.log(`Listening on port: ${PORT}`)
+const port = proces.env.PORT || 4000;
+
+// Production path to React App
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
+
+app.listen(port, () => {
+    console.log(`Listening on port: ${port}`)
 })
