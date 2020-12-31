@@ -14,7 +14,7 @@ app.use(cors());
 // Basic route
 app.get('/', (req, res) => {
     res.json({
-        foo: "bar"
+        foo: "baz"
     });
 });
 
