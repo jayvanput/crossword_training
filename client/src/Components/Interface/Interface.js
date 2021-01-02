@@ -5,6 +5,7 @@ export default class Interface extends Component {
         return (
             <div className="col" id="interface">
                 <ClueBox />
+                <div>{this.props.test}</div>
             </div>
         )
     }
