@@ -5,9 +5,21 @@ export default function DateFilter() {
         <div className="col mx-2 mt-2">
             <h3>Filter by date</h3>
             <hr></hr>
-            <input name="start_date" type="date" className="mx-auto" />
-            <div style={{ margin: "auto" }}>to</div>
-            <input name="end_date" type="date" />
+            <div className="row">
+                <div className="col d-flex justify-content-center">
+                    <input name="start_date" type="date" />
+                </div>
+            </div>
+            <div className="row">
+                <div className="col d-flex justify-content-center">
+                    <div className="row">to</div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col d-flex justify-content-center">
+                    <input name="end_date" type="date" />
+                </div>
+            </div>
         </div>
     )
 }
