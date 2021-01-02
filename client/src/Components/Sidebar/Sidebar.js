@@ -7,7 +7,7 @@ export default class Sidebar extends Component {
     render() {
         return (
             <div className="col-3" id="sidebar">
-                <form>
+                <form action="http://localhost:4000/api/" method="get">
                     <div className="row" id="dayfilter">
                         <DayFilter />
                     </div>
