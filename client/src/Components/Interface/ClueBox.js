@@ -11,6 +11,8 @@ export default function ClueBox() {
                         <ClueText />
                         <ClueSquares />
                         <input type="text" />
+                        <button type="submit" className="btn btn-primary btn-md m-2">Submit</button>
+                        <button type="submit" className="btn btn-danger btn-sm ">Delete</button>
                     </div>
                 </div>
             </div>
