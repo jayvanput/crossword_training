@@ -7,7 +7,7 @@ import SidebarSubmit from './SidebarSubmit'
 export default class Sidebar extends Component {
     render() {
         return (
-            <div className="col-12 col-md-3 mx-2" id="sidebar">
+            <div className="col-12 col-md-3" id="sidebar">
                 <form action="http://localhost:4000/api/" method="get">
                     <div className="row" id="dayfilter">
                         <DayFilter />

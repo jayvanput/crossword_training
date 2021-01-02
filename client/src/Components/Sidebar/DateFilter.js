@@ -2,7 +2,7 @@
 
 export default function DateFilter() {
     return (
-        <div className="col mx-2 mt-2">
+        <div className="col mx-2">
             <h3>Filter by date</h3>
             <hr></hr>
             <div className="row">
