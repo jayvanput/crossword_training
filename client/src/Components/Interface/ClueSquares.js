@@ -9,12 +9,15 @@ export default function ClueSquares() {
     }
 
     return (
-        <div className="d-flex justify-content-around w-50 mx-auto">
-            {
-                word_arr.map(square =>
-                    <ClueSquare />
-                )
-            }
+        <div className="row">
+            <div className="d-flex justify-content-around w-50 mx-auto">
+                {
+                    word_arr.map((square, idx) =>
+                        <ClueSquare key={idx} />
+                    )
+                }
+            </div>
         </div>
+
     )
 }
