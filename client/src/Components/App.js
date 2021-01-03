@@ -8,12 +8,42 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "days": ["Monday"],
       "start_date": "1993-11-22",
       "end_date": "2017-7-12",
+      "clue": "Cutters that cut with the grain",
+      "answer": "RIPSAWS",
+      "revealed": ["_", "_", "_", "_", "_", "_", "_"]
     }
     this.updateDay = this.updateDay.bind(this)
     this.updateDates = this.updateDates.bind(this)
+    this.callAPI = this.callAPI.bind(this)
+    this.handleNewClue = this.handleNewClue.bind(this)
+    this.updateReveal = this.updateReveal.bind(this)
+  }
+
+  callAPI() {
+    let { days, start_date, end_date } = this.state
+    let api_params = {
+      days,
+      start_date,
+      end_date
+    }
+    axios.get('/api', {
+      params: api_params
+    })
+      .then(response => {
+        if (this.state.clue !== response.data.clue) {
+          let revealed = response.data.answer.split('').map(function (char) {
+            return char = '_';
+          })
+          this.setState({
+            "clue": response.data.clue,
+            "answer": response.data.answer,
+            "revealed": revealed
+          })
+        }
+      })
   }
 
   updateDay(day) {
@@ -27,6 +57,7 @@ class App extends Component {
     this.setState({
       "days": filtered_days
     })
+    this.callAPI()
   }
 
   updateDates(date_params) {
@@ -39,10 +70,47 @@ class App extends Component {
         "end_date": date_params.date
       })
     }
+    this.callAPI()
+  }
+
+  updateReveal() {
+    let { revealed, answer } = this.state
+    let hidden_square_idxs = []
+    // Get all letters that are still hidden
+    for (let i = 0; i < revealed.length; i++) {
+      if (revealed[i] === "_") {
+        hidden_square_idxs.push(i)
+      }
+    }
+    // Check if all squares have been revealed.
+    if (hidden_square_idxs.length === 0) {
+      return
+    }
+
+    var reveal_idx = hidden_square_idxs[Math.floor(Math.random() * hidden_square_idxs.length)];
+    for (let i = 0; i < revealed.length; i++) {
+      if (reveal_idx === i) {
+        revealed[i] = answer[i]
+      }
+    }
+    this.setState({
+      revealed
+    })
+  }
+
+  handleNewClue(guess) {
+    let { revealed, answer } = this.state
+    if (revealed.includes("_")) {
+      let revealed_arr = answer.split("")
+      this.setState({
+        revealed: revealed_arr
+      })
+    } else {
+      this.callAPI()
+    }
   }
 
   render() {
-    let api_params = this.state
     return (
       <div className="container-md" id="app-container" >
         <div className="row">
@@ -54,7 +122,11 @@ class App extends Component {
             onDayCheck={this.updateDay}
             onDateChange={this.updateDates}
           />
-          <Interface test={this.state.test} api_params={api_params} />
+          <Interface
+            values={this.state}
+            handleInput={this.handleNewClue}
+            handleReveal={this.updateReveal}
+          />
         </div>
       </div>
     );

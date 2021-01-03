@@ -1,6 +1,6 @@
 
-export default function ClueSquare() {
+export default function ClueSquare(props) {
     return (
-        <div style={{ margin: "5%", fontSize: "24px" }}>_</div>
+        <div style={{ margin: "5%", fontSize: "24px" }}>{props.square}</div>
     )
 }

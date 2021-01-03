@@ -25,9 +25,23 @@ MongoClient.connect(uri, { useUnifiedTopology: true })
 
         // Routes
         app.get('/api/', (req, res) => {
-            console.log("here")
-            cluesCollection.findOne()
-                .then(value => res.json(value))
+            let days = req.query.days
+            let start_date = req.query.start_date
+            let end_date = req.query.end_date
+            const query = {
+                day: { $in: days },
+                date: { $gt: start_date, $lt: end_date }
+            }
+            console.log(query)
+            cluesCollection.find(query).toArray()
+                .then(arr => {
+                    const rand_idx = Math.floor(Math.random() * arr.length)
+                    console.log(arr[rand_idx])
+                    return arr[rand_idx]
+                })
+                .then(value => {
+                    res.json(value)
+                })
         })
         // app.post()
         // app.put()
