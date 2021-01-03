@@ -52,9 +52,9 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
     })
 
 const port = process.env.PORT || 4000;
-
 // Production path to React App
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
+
     app.use(express.static('client/build'));
 
     app.get('*', (req, res) => {
