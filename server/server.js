@@ -15,10 +15,10 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-const uri = process.env.MONGODB_URI || process.env.ATLAS_URI;
+const uri = process.env.ATLAS_URI;
 const dbName = 'clues'
 
-MongoClient.connect(uri, { useUnifiedTopology: true })
+MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mongodb.net/test?retryWrites=true&w=majority", { useUnifiedTopology: true })
     .then(client => {
         console.log("Connected successfully to db");
         const db = client.db(dbName);
