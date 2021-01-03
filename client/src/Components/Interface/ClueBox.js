@@ -13,7 +13,10 @@ export default class ClueBox extends Component {
     }
 
     componentDidUpdate() {
-        axios.get('http://localhost:4000/api')
+
+        axios.get('http://localhost:4000/api', {
+            params: this.props.api_params
+        })
             .then(response => {
                 if (this.state.question !== response.data.question) {
                     this.setState({
