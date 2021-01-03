@@ -8,7 +8,7 @@ require('dotenv').config();
 
 // Set up middleware
 const app = express();
-app.use(helmet());
+//app.use(helmet());
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
