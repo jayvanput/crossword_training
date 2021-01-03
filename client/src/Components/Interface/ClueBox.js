@@ -6,31 +6,35 @@ export default class ClueBox extends Component {
     constructor(props) {
         super(props);
         this.handleInput = this.handleInput.bind(this)
+        this.inputUpdate = this.inputUpdate.bind(this)
+    }
+
+    inputUpdate(input, color) {
+        input.value = ""
+        input.style.backgroundColor = color
+        setTimeout(() => {
+            input.style.backgroundColor = "transparent"
+        }, 500)
     }
 
     handleInput(e) {
         let guess = e.target.value
         let { answer } = this.props;
+        // Handle enter
         if (e.key === "Enter") {
+            console.log("Enter")
             if (guess.toUpperCase() === answer) {
-                this.props.newClue()
-                e.target.value = ""
-                e.target.style.backgroundColor = "lightgreen"
-                setTimeout(() => {
-                    e.target.style.backgroundColor = "transparent"
-                }, 500)
+                this.props.handleInput()
+                this.inputUpdate(e.target, "lightgreen")
             } else {
-                e.target.value = ""
-                e.target.style.backgroundColor = "red"
-                setTimeout(() => {
-                    e.target.style.backgroundColor = "transparent"
-                }, 500)
+                this.inputUpdate(e.target, "pink")
+                this.props.handleReveal()
             }
         }
     }
 
     render() {
-        let { clue, answer } = this.props
+        let { clue, answer, revealed } = this.props
         return (
             <div className="row" >
                 <div className="col">
@@ -41,6 +45,7 @@ export default class ClueBox extends Component {
                                 answer={answer} />
                             <ClueSquares
                                 answer={answer}
+                                revealed={revealed}
                             />
                             <button type="submit" className="btn btn-info btn-md m-2">Reveal letter</button>
                             <input

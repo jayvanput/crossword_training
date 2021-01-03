@@ -3,15 +3,19 @@ import ClueBox from './ClueBox'
 export default class Interface extends Component {
     constructor(props) {
         super(props);
-        this.handleNewClue = this.handleNewClue.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+        this.handleReveal = this.handleReveal.bind(this);
     }
 
-    handleNewClue(guess) {
-        this.props.getNewClue(guess)
+    handleInput(guess) {
+        this.props.handleInput(guess)
     }
 
+    handleReveal() {
+        this.props.handleReveal()
+    }
     render() {
-        let { days, start_date, end_date, clue, answer } = this.props.values
+        let { days, start_date, end_date, clue, answer, revealed } = this.props.values
         let api_params = {
             days,
             start_date,
@@ -23,7 +27,9 @@ export default class Interface extends Component {
                     api_params={api_params}
                     clue={clue}
                     answer={answer}
-                    newClue={this.handleNewClue}
+                    revealed={revealed}
+                    handleInput={this.handleInput}
+                    handleReveal={this.handleReveal}
                 />
             </div>
         )

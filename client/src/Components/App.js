@@ -12,12 +12,14 @@ class App extends Component {
       "start_date": "1993-11-22",
       "end_date": "2017-7-12",
       "clue": "Cutters that cut with the grain",
-      "answer": "RIPSAWS"
+      "answer": "RIPSAWS",
+      "revealed": ["_", "_", "_", "_", "_", "_", "_"]
     }
     this.updateDay = this.updateDay.bind(this)
     this.updateDates = this.updateDates.bind(this)
     this.callAPI = this.callAPI.bind(this)
     this.handleNewClue = this.handleNewClue.bind(this)
+    this.updateReveal = this.updateReveal.bind(this)
   }
 
   callAPI() {
@@ -32,9 +34,13 @@ class App extends Component {
     })
       .then(response => {
         if (this.state.clue !== response.data.clue) {
+          let revealed = response.data.answer.split('').map(function (char) {
+            return char = '_';
+          })
           this.setState({
             "clue": response.data.clue,
-            "answer": response.data.answer
+            "answer": response.data.answer,
+            "revealed": revealed
           })
         }
       })
@@ -67,6 +73,31 @@ class App extends Component {
     this.callAPI()
   }
 
+  updateReveal() {
+    let { revealed, answer } = this.state
+    let hidden_square_idxs = []
+    // Get all letters that are still hidden
+    for (let i = 0; i < revealed.length; i++) {
+      if (revealed[i] === "_") {
+        hidden_square_idxs.push(i)
+      }
+    }
+    // Check if all squares have been revealed.
+    if (hidden_square_idxs.length === 0) {
+      return
+    }
+
+    var reveal_idx = hidden_square_idxs[Math.floor(Math.random() * hidden_square_idxs.length)];
+    for (let i = 0; i < revealed.length; i++) {
+      if (reveal_idx === i) {
+        revealed[i] = answer[i]
+      }
+    }
+    this.setState({
+      revealed
+    })
+  }
+
   handleNewClue(guess) {
     this.callAPI()
   }
@@ -85,7 +116,8 @@ class App extends Component {
           />
           <Interface
             values={this.state}
-            getNewClue={this.handleNewClue}
+            handleInput={this.handleNewClue}
+            handleReveal={this.updateReveal}
           />
         </div>
       </div>
