@@ -26,6 +26,7 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
 
         // Routes
         app.get('/api/', (req, res) => {
+            console.log("here")
             let days = req.query.days
             let start_date = req.query.start_date
             let end_date = req.query.end_date
@@ -36,6 +37,7 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
             console.log(query)
             cluesCollection.find(query).toArray()
                 .then(arr => {
+                    console.log(arr)
                     const rand_idx = Math.floor(Math.random() * arr.length)
                     console.log(arr[rand_idx])
                     return arr[rand_idx]
