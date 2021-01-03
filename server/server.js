@@ -25,7 +25,7 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
         const cluesCollection = db.collection('clues')
 
         // Routes
-        app.get('/api', (req, res) => {
+        app.get('http://localhost:4000/api', (req, res) => {
             console.log("here")
             let days = req.query.days
             let start_date = req.query.start_date
