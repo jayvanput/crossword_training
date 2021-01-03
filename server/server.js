@@ -26,18 +26,29 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
 
         // Routes
         app.get('/api', (req, res) => {
-            let days = req.query.days
+            let day = req.query.day
             let start_date = req.query.start_date
             let end_date = req.query.end_date
             const query = {
-                day: { $in: days },
+                day: day,
                 date: { $gt: start_date, $lt: end_date }
             }
             console.log(query)
             cluesCollection.find(query).toArray()
                 .then(arr => {
+                    console.log(arr)
+                    if (arr.length === 0) {
+                        res.json({
+                            _id: "5ff140e1b4bd587341841c55",
+                            id: 5708,
+                            date: '1994-04-18',
+                            day: 'Monday',
+                            number: '25A',
+                            clue: 'Date range is too small!',
+                            answer: '_'
+                        })
+                    }
                     const rand_idx = Math.floor(Math.random() * arr.length)
-                    console.log(arr[rand_idx])
                     return arr[rand_idx]
                 })
                 .then(value => {

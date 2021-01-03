@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      "days": ["Monday"],
+      "day": "Monday",
       "start_date": "1993-11-22",
       "end_date": "2017-7-12",
       "clue": "Cutters that cut with the grain",
@@ -23,9 +23,9 @@ class App extends Component {
   }
 
   callAPI() {
-    let { days, start_date, end_date } = this.state
+    let { day, start_date, end_date } = this.state
     let api_params = {
-      days,
+      day,
       start_date,
       end_date
     }
@@ -47,15 +47,8 @@ class App extends Component {
   }
 
   updateDay(day) {
-    let filtered_days = this.state.days
-    if (filtered_days.includes(day)) {
-      const idx = filtered_days.indexOf(day)
-      filtered_days.splice(idx, 1)
-    } else {
-      filtered_days.push(day)
-    }
     this.setState({
-      "days": filtered_days
+      "day": day
     })
     this.callAPI()
   }
