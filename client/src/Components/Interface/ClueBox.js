@@ -19,7 +19,7 @@ export default class ClueBox extends Component {
 
     handleInput(e) {
         let guess = e.target.value
-        let { answer } = this.props;
+        let { answer, revealed } = this.props;
         // Handle enter
         if (e.key === "Enter") {
             console.log("Enter")
@@ -27,8 +27,12 @@ export default class ClueBox extends Component {
                 this.props.handleInput()
                 this.inputUpdate(e.target, "lightgreen")
             } else {
-                this.inputUpdate(e.target, "pink")
-                this.props.handleReveal()
+                if (!revealed.includes("_")) {
+                    this.props.handleInput()
+                } else {
+                    this.inputUpdate(e.target, "pink")
+                    this.props.handleReveal()
+                }
             }
         }
     }

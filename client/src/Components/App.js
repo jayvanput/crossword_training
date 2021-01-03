@@ -99,7 +99,15 @@ class App extends Component {
   }
 
   handleNewClue(guess) {
-    this.callAPI()
+    let { revealed, answer } = this.state
+    if (revealed.includes("_")) {
+      let revealed_arr = answer.split("")
+      this.setState({
+        revealed: revealed_arr
+      })
+    } else {
+      this.callAPI()
+    }
   }
 
   render() {
