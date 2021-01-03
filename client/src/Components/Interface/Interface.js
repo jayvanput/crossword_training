@@ -4,8 +4,7 @@ export default class Interface extends Component {
     render() {
         return (
             <div className="col" id="interface">
-                <ClueBox />
-                <div>{this.props.test}</div>
+                <ClueBox api_params={this.props.api_params} />
             </div>
         )
     }

@@ -1,7 +1,7 @@
 import ClueSquare from './ClueSquare'
 
-export default function ClueSquares() {
-    let word = "RIPSAWS"
+export default function ClueSquares(props) {
+    let word = props.answer
     let word_arr = []
 
     for (let i = 0; i < word.length; i++) {

@@ -3,23 +3,17 @@ import Interface from "./Interface/Interface"
 import Header from './Header'
 import './App.css'
 import { Component } from 'react'
+import axios from 'axios'
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       "start_date": "1993-11-22",
-      "end_date": "2017-7-12"
+      "end_date": "2017-7-12",
     }
-    this.handleFilter = this.handleFilter.bind(this)
     this.updateDay = this.updateDay.bind(this)
-    this.updateDateRange = this.updateDateRange.bind(this)
-  }
-
-  handleFilter() {
-    this.setState({
-      "test": this.state.test + 1
-    })
+    this.updateDates = this.updateDates.bind(this)
   }
 
   updateDay(day) {
@@ -35,20 +29,20 @@ class App extends Component {
     })
   }
 
-  updateDateRange(date_params) {
+  updateDates(date_params) {
     if (date_params.date_type === "start_date") {
       this.setState({
         "start_date": date_params.date
       })
     } else {
       this.setState({
-        "start_date": date_params.date
+        "end_date": date_params.date
       })
     }
   }
 
-
   render() {
+    let api_params = this.state
     return (
       <div className="container-md" id="app-container" >
         <div className="row">
@@ -58,9 +52,9 @@ class App extends Component {
           <Sidebar
             filter={this.handleFilter}
             onDayCheck={this.updateDay}
-            onDateChange={this.updateDateRange}
+            onDateChange={this.updateDates}
           />
-          <Interface test={this.state.test} />
+          <Interface test={this.state.test} api_params={api_params} />
         </div>
       </div>
     );
