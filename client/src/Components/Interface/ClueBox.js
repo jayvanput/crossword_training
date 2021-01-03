@@ -4,30 +4,9 @@ import ClueText from './ClueText'
 import ClueSquares from './ClueSquares'
 import axios from 'axios'
 export default class ClueBox extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            "question": "Cutters that cut with the grain",
-            "answer": "RIPSAWS"
-        }
-    }
 
-    componentDidUpdate() {
-
-        axios.get('http://localhost:4000/api', {
-            params: this.props.api_params
-        })
-            .then(response => {
-                if (this.state.question !== response.data.question) {
-                    this.setState({
-                        "question": response.data.question,
-                        "answer": response.data.answer
-                    })
-                }
-            })
-    }
     render() {
-        let { question, answer } = this.state
+        let { question, answer } = this.props
         return (
             <div className="row" >
                 <div className="col">
