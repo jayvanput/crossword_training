@@ -13,7 +13,7 @@ class App extends Component {
       "end_date": "2017-7-12",
       "clue": "Cutters that cut with the grain",
       "answer": "RIPSAWS",
-      "revealed": ["_", "_", "_", "_", "_", "_", "_"]
+      "revealed": [" ", " ", " ", " ", " ", " ", " "]
     }
     this.updateDay = this.updateDay.bind(this)
     this.updateDates = this.updateDates.bind(this)
@@ -35,7 +35,7 @@ class App extends Component {
       .then(response => {
         if (this.state.clue !== response.data.clue) {
           let revealed = response.data.answer.split('').map(function (char) {
-            return char = '_';
+            return char = ' ';
           })
           this.setState({
             "clue": response.data.clue,
@@ -71,7 +71,7 @@ class App extends Component {
     let hidden_square_idxs = []
     // Get all letters that are still hidden
     for (let i = 0; i < revealed.length; i++) {
-      if (revealed[i] === "_") {
+      if (revealed[i] === " ") {
         hidden_square_idxs.push(i)
       }
     }
@@ -93,7 +93,7 @@ class App extends Component {
 
   handleNewClue(guess) {
     let { revealed, answer } = this.state
-    if (revealed.includes("_")) {
+    if (revealed.includes(" ")) {
       let revealed_arr = answer.split("")
       this.setState({
         revealed: revealed_arr

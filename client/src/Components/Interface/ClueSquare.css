@@ -1,0 +1,11 @@
+.square {
+    display: block;
+    border: 1px solid gray;
+    height: 5vh;
+    width:5vh;
+}
+
+span {
+    padding: 0;
+    font-size: 4vh;
+}

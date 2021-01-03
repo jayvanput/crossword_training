@@ -27,7 +27,7 @@ export default class ClueBox extends Component {
                 this.props.handleInput()
                 this.inputUpdate(e.target, "lightgreen")
             } else {
-                if (!revealed.includes("_")) {
+                if (!revealed.includes(" ")) {
                     this.props.handleInput()
                 } else {
                     this.inputUpdate(e.target, "pink")
