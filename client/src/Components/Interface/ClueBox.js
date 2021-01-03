@@ -2,18 +2,17 @@ import { Component } from 'react'
 import './ClueBox.css'
 import ClueText from './ClueText'
 import ClueSquares from './ClueSquares'
-import axios from 'axios'
 export default class ClueBox extends Component {
 
     render() {
-        let { question, answer } = this.props
+        let { clue, answer } = this.props
         return (
             <div className="row" >
                 <div className="col">
                     <div className="card" id="card-row">
                         <div className="card-body  text-center">
                             <ClueText
-                                question={question}
+                                clue={clue}
                                 answer={answer} />
                             <ClueSquares
                                 answer={answer}

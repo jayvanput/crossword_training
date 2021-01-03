@@ -15,10 +15,11 @@ export default class DayInput extends Component {
                 <div className="col px-5">
                     <div className="form-check">
                         <input
-                            defaultChecked={true}
+                            defaultChecked={this.props.day === "Monday" ? true : false}
                             value={this.props.day}
+                            name="day"
                             className="form-check-input"
-                            type="checkbox"
+                            type="radio"
                             id={`flexCheckDefault${this.props.day}`}
                             onChange={this.handleChangeChk}
                         />

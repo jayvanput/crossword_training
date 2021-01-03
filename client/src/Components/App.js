@@ -11,7 +11,7 @@ class App extends Component {
       "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       "start_date": "1993-11-22",
       "end_date": "2017-7-12",
-      "question": "Cutters that cut with the grain",
+      "clue": "Cutters that cut with the grain",
       "answer": "RIPSAWS"
     }
     this.updateDay = this.updateDay.bind(this)
@@ -20,13 +20,19 @@ class App extends Component {
   }
 
   callAPI() {
+    let { days, start_date, end_date } = this.state
+    let api_params = {
+      days,
+      start_date,
+      end_date
+    }
     axios.get('http://localhost:4000/api', {
-      params: this.props.api_params
+      params: api_params
     })
       .then(response => {
-        if (this.state.question !== response.data.question) {
+        if (this.state.clue !== response.data.clue) {
           this.setState({
-            "question": response.data.question,
+            "clue": response.data.clue,
             "answer": response.data.answer
           })
         }
@@ -61,7 +67,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div className="container-md" id="app-container" >
         <div className="row">
