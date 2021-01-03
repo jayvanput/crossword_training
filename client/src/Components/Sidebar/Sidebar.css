@@ -1,0 +1,9 @@
+#sidebar {
+    border-right: 1px solid lightgray;
+}
+
+@media only screen and (min-width: 600px) {
+    #sidebar {
+        height: 94vh;
+    }
+}

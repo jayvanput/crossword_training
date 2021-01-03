@@ -24,7 +24,8 @@ MongoClient.connect(uri, { useUnifiedTopology: true })
         const cluesCollection = db.collection('clues')
 
         // Routes
-        app.get('/', (req, res) => {
+        app.get('/api/', (req, res) => {
+            console.log("here")
             cluesCollection.findOne()
                 .then(value => res.json(value))
         })
