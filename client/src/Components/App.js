@@ -29,7 +29,7 @@ class App extends Component {
       start_date,
       end_date
     }
-    axios.get('/api', {
+    axios.get('http://localhost:4000/api', {
       params: api_params
     })
       .then(response => {
