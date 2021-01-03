@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "days": ["Monday"],
       "start_date": "1993-11-22",
       "end_date": "2017-7-12",
       "clue": "Cutters that cut with the grain",
@@ -17,6 +17,7 @@ class App extends Component {
     this.updateDay = this.updateDay.bind(this)
     this.updateDates = this.updateDates.bind(this)
     this.callAPI = this.callAPI.bind(this)
+    this.handleNewClue = this.handleNewClue.bind(this)
   }
 
   callAPI() {
@@ -66,6 +67,10 @@ class App extends Component {
     this.callAPI()
   }
 
+  handleNewClue(guess) {
+    this.callAPI()
+  }
+
   render() {
     return (
       <div className="container-md" id="app-container" >
@@ -78,7 +83,10 @@ class App extends Component {
             onDayCheck={this.updateDay}
             onDateChange={this.updateDates}
           />
-          <Interface test={this.state.test} values={this.state} />
+          <Interface
+            values={this.state}
+            getNewClue={this.handleNewClue}
+          />
         </div>
       </div>
     );
