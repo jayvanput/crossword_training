@@ -33,10 +33,8 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
                 day: day,
                 date: { $gt: start_date, $lt: end_date }
             }
-            console.log(query)
             cluesCollection.find(query).toArray()
                 .then(arr => {
-                    console.log(arr)
                     if (arr.length === 0) {
                         res.json({
                             _id: "5ff140e1b4bd587341841c55",
