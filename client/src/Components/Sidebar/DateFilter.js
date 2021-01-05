@@ -21,14 +21,22 @@ export default class DateFilter extends Component {
                 <hr></hr>
                 <div className="row">
                     <div className="col d-flex justify-content-center">
-                        <input
-                            name="start_date"
-                            type="date"
-                            defaultValue="1993-11-22"
-                            min="1993-11-22"
-                            max="2017-07-12"
-                            onChange={this.handleDateChange}
-                        />
+                        <form>
+                            <div className="row">
+                                <div className="col">
+                                    <label htmlFor="start_date">Start</label>
+                                </div>
+                            </div>
+                            <input
+                                id="start_date"
+                                name="start_date"
+                                type="date"
+                                defaultValue="1993-11-22"
+                                min="1993-11-22"
+                                max="2017-07-12"
+                                onChange={this.handleDateChange}
+                            />
+                        </form>
                     </div>
                 </div>
                 <div className="row">
@@ -38,13 +46,21 @@ export default class DateFilter extends Component {
                 </div>
                 <div className="row">
                     <div className="col d-flex justify-content-center">
-                        <input
-                            name="end_date"
-                            type="date"
-                            defaultValue="2017-07-12"
-                            min="1993-11-22"
-                            max="2017-07-12"
-                            onChange={this.handleDateChange} />
+                        <form>
+                            <div className="row">
+                                <div className="col">
+                                    <label htmlFor="end_date">End</label>
+                                </div>
+                            </div>
+                            <input
+                                id="end_date"
+                                name="end_date"
+                                type="date"
+                                defaultValue="2017-07-12"
+                                min="1993-11-22"
+                                max="2017-07-12"
+                                onChange={this.handleDateChange} />
+                        </form>
                     </div>
                 </div>
             </div>

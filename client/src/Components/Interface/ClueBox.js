@@ -53,6 +53,7 @@ export default class ClueBox extends Component {
                             />
                             <button type="submit" className="btn btn-info btn-md m-2">Reveal letter</button>
                             <input
+                                aria-label="guess_input"
                                 type="text"
                                 onKeyPress={this.handleInput}
                             />
