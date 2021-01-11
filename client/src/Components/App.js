@@ -9,14 +9,11 @@ class App extends Component {
     super(props);
     this.state = {
       "day": "Monday",
-      "start_date": "1993-11-22",
-      "end_date": "2017-7-12",
       "clue": "Cutters that cut with the grain",
       "answer": "RIPSAWS",
       "revealed": [" ", " ", " ", " ", " ", " ", " "]
     }
     this.updateDay = this.updateDay.bind(this)
-    this.updateDates = this.updateDates.bind(this)
     this.callAPI = this.callAPI.bind(this)
     this.handleNewClue = this.handleNewClue.bind(this)
     this.updateReveal = this.updateReveal.bind(this)
@@ -50,19 +47,6 @@ class App extends Component {
     this.setState({
       "day": day
     })
-    this.callAPI()
-  }
-
-  updateDates(date_params) {
-    if (date_params.date_type === "start_date") {
-      this.setState({
-        "start_date": date_params.date
-      })
-    } else {
-      this.setState({
-        "end_date": date_params.date
-      })
-    }
     this.callAPI()
   }
 

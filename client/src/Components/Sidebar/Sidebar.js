@@ -7,7 +7,6 @@ export default class Sidebar extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleDayCheck = this.handleDayCheck.bind(this)
-        this.handleDateChange = this.handleDateChange.bind(this)
     }
 
     handleSubmit(e) {
@@ -20,9 +19,6 @@ export default class Sidebar extends Component {
         this.props.onDayCheck(day)
     }
 
-    handleDateChange(params) {
-        this.props.onDateChange(params)
-    }
     render() {
         return (
             <div className="col-12 col-md-3" id="sidebar">
