@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import './Sidebar.css'
 import DayFilter from './DayFilter'
-import DateFilter from './DateFilter'
 
 export default class Sidebar extends Component {
     constructor(props) {
@@ -29,9 +28,6 @@ export default class Sidebar extends Component {
             <div className="col-12 col-md-3" id="sidebar">
                 <div className="row" id="dayfilter">
                     <DayFilter onChangeChk={this.handleDayCheck} />
-                </div>
-                <div className="row" id="datefilter">
-                    <DateFilter onDateChange={this.handleDateChange} />
                 </div>
             </div >
         )

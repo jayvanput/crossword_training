@@ -22,16 +22,13 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
     .then(client => {
         console.log("Connected successfully to db");
         const db = client.db(dbName);
-        const cluesCollection = db.collection('clues')
 
         // Routes
         app.get('/api', (req, res) => {
+            const cluesCollection = db.collection('clues')
             let day = req.query.day
-            let start_date = req.query.start_date
-            let end_date = req.query.end_date
             const query = {
                 day: day,
-                date: { $gt: start_date, $lt: end_date }
             }
             cluesCollection.find(query).toArray()
                 .then(arr => {
