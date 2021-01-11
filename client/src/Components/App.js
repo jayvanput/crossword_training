@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      _id: "5ff140e1b4bd587341841c55",
       "day": "Monday",
       "clue": "Cutters that cut with the grain",
       "answer": "RIPSAWS",
@@ -37,7 +38,8 @@ class App extends Component {
           this.setState({
             "clue": response.data.clue,
             "answer": response.data.answer,
-            "revealed": revealed
+            "revealed": revealed,
+            "_id": response.data._id
           })
         }
       })
@@ -45,7 +47,7 @@ class App extends Component {
 
   updateDay(day) {
     this.setState({
-      "day": day
+      day
     })
     this.callAPI()
   }

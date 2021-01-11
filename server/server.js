@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const path = require('path')
 
 const MongoClient = require('mongodb').MongoClient;
+const { ObjectId } = require('mongodb');
 require('dotenv').config();
 
 // Set up middleware
@@ -47,12 +48,19 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
                     return arr[rand_idx]
                 })
                 .then(value => {
+                    console.log(value)
                     res.json(value)
                 })
         })
         // app.post()
         // app.put()
-        // app.delete()
+        app.delete('/api', (req, res) => {
+            const cluesCollection = db.collection('clues')
+            object_id = req.query.id
+            cluesCollection.deleteOne({
+                "_id": ObjectId(req.query.id)
+            })
+        })
     })
 
 const port = process.env.PORT || 4000;

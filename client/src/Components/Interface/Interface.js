@@ -15,11 +15,12 @@ export default class Interface extends Component {
         this.props.handleReveal()
     }
     render() {
-        let { days, start_date, end_date, clue, answer, revealed } = this.props.values
+        let { _id, days, start_date, end_date, clue, answer, revealed } = this.props.values
         let api_params = {
             days,
             start_date,
-            end_date
+            end_date,
+            _id
         }
         return (
             <div className="col" id="interface">

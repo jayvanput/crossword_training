@@ -2,6 +2,7 @@ import { Component } from 'react'
 import './ClueBox.css'
 import ClueText from './ClueText'
 import ClueSquares from './ClueSquares'
+import DeleteButton from './DeleteButton'
 export default class ClueBox extends Component {
     constructor(props) {
         super(props);
@@ -39,6 +40,7 @@ export default class ClueBox extends Component {
 
     render() {
         let { clue, answer, revealed } = this.props
+        let { _id } = this.props.api_params
         return (
             <div className="row" >
                 <div className="col">
@@ -57,13 +59,10 @@ export default class ClueBox extends Component {
                                 type="text"
                                 onKeyPress={this.handleInput}
                             />
-                            <button
-                                type="submit"
-                                className="btn btn-primary btn-md m-2"
-                            >Submit</button>
-                            <button type="submit" className="btn btn-danger btn-sm m-2">Delete</button>
+                            <DeleteButton
+                                id={_id}
+                            />
                         </div>
-
                     </div>
                 </div>
             </div>
