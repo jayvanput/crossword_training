@@ -10,14 +10,19 @@ class App extends Component {
     this.state = {
       _id: "5ff140e1b4bd587341841c55",
       "day": "Monday",
-      "clue": "Cutters that cut with the grain",
-      "answer": "RIPSAWS",
+      "clue": "",
+      "answer": " ",
       "revealed": [" ", " ", " ", " ", " ", " ", " "]
     }
     this.updateDay = this.updateDay.bind(this)
     this.callAPI = this.callAPI.bind(this)
     this.handleNewClue = this.handleNewClue.bind(this)
     this.updateReveal = this.updateReveal.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
+  }
+
+  componentDidMount() {
+    this.callAPI()
   }
 
   callAPI() {
@@ -89,6 +94,10 @@ class App extends Component {
     }
   }
 
+  handleDelete() {
+    this.callAPI()
+  }
+
   render() {
     return (
       <div className="container-md" id="app-container" >
@@ -105,6 +114,7 @@ class App extends Component {
             values={this.state}
             handleInput={this.handleNewClue}
             handleReveal={this.updateReveal}
+            handleDelete={this.handleDelete}
           />
         </div>
       </div>

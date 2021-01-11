@@ -5,6 +5,7 @@ export default class Interface extends Component {
         super(props);
         this.handleInput = this.handleInput.bind(this);
         this.handleReveal = this.handleReveal.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleInput(guess) {
@@ -13,6 +14,10 @@ export default class Interface extends Component {
 
     handleReveal() {
         this.props.handleReveal()
+    }
+
+    handleDelete() {
+        this.props.handleDelete()
     }
     render() {
         let { _id, days, start_date, end_date, clue, answer, revealed } = this.props.values
@@ -31,6 +36,7 @@ export default class Interface extends Component {
                     revealed={revealed}
                     handleInput={this.handleInput}
                     handleReveal={this.handleReveal}
+                    handleDelete={this.handleDelete}
                 />
             </div>
         )

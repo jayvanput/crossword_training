@@ -59,6 +59,8 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
             object_id = req.query.id
             cluesCollection.deleteOne({
                 "_id": ObjectId(req.query.id)
+            }).then(response => {
+                res.send("Ok")
             })
         })
     })

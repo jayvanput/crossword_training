@@ -12,6 +12,8 @@ export default class DeleteButton extends Component {
             params: {
                 id: this.props.id
             }
+        }).then(response => {
+            this.props.delete_action()
         })
     }
     render() {

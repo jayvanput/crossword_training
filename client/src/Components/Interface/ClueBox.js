@@ -8,6 +8,7 @@ export default class ClueBox extends Component {
         super(props);
         this.handleInput = this.handleInput.bind(this)
         this.inputUpdate = this.inputUpdate.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     inputUpdate(input, color) {
@@ -38,6 +39,10 @@ export default class ClueBox extends Component {
         }
     }
 
+    handleDelete() {
+        this.props.handleDelete()
+    }
+
     render() {
         let { clue, answer, revealed } = this.props
         let { _id } = this.props.api_params
@@ -61,6 +66,7 @@ export default class ClueBox extends Component {
                             />
                             <DeleteButton
                                 id={_id}
+                                delete_action={this.handleDelete}
                             />
                         </div>
                     </div>
