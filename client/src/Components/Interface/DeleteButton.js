@@ -10,7 +10,8 @@ export default class DeleteButton extends Component {
     handleClick() {
         axios.delete('/api', {
             params: {
-                id: this.props.id
+                id: this.props.id,
+                day: this.props.day
             }
         }).then(response => {
             this.props.delete_action()

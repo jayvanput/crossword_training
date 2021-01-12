@@ -52,7 +52,8 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
         // app.post()
         // app.put()
         app.delete('/api', (req, res) => {
-            const cluesCollection = db.collection('clues')
+            day = req.query.day
+            const cluesCollection = db.collection(day)
             object_id = req.query.id
             cluesCollection.deleteOne({
                 "_id": ObjectId(req.query.id)

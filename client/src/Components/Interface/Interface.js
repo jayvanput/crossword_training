@@ -20,9 +20,9 @@ export default class Interface extends Component {
         this.props.handleDelete()
     }
     render() {
-        let { _id, days, start_date, end_date, clue, answer, revealed } = this.props.values
+        let { _id, day, start_date, end_date, clue, answer, revealed } = this.props.values
         let api_params = {
-            days,
+            day,
             start_date,
             end_date,
             _id
