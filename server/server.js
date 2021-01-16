@@ -17,7 +17,7 @@ app.use(express.json());
 
 // MongoDB connection
 const uri = process.env.ATLAS_URI;
-const dbName = 'Days'
+const dbName = 'Crosswordese'
 
 MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mongodb.net/test?retryWrites=true&w=majority", { useUnifiedTopology: true })
     .then(client => {
@@ -28,7 +28,7 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
         app.get('/api', (req, res) => {
             let day = req.query.day
             const cluesCollection = db.collection(day)
-            cluesCollection.find().toArray()
+            cluesCollection.aggregate([{ $sample: { size: 1 } }]).toArray()
                 .then(arr => {
                     if (arr.length === 0) {
                         res.json({
