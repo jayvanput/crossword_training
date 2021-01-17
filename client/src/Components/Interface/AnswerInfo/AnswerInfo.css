@@ -1,0 +1,17 @@
+#box {
+    margin: auto;
+    width: 60%;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+#header {
+    height: 3vh;
+}
+
+#body {
+}
+
+.hidden {
+    display: none;
+}

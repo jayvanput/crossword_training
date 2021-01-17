@@ -13,7 +13,9 @@ class App extends Component {
       "clue": "",
       "answer": " ",
       "revealed": [" ", " ", " ", " ", " ", " ", " "],
-      "db_name": "Crosswordese"
+      "db_name": "Crosswordese",
+      "wiki_data": [],
+      "reveal_wiki": false
     }
     this.updateDay = this.updateDay.bind(this)
     this.updateFilter = this.updateFilter.bind(this)
@@ -21,6 +23,7 @@ class App extends Component {
     this.handleNewClue = this.handleNewClue.bind(this)
     this.updateReveal = this.updateReveal.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
@@ -33,21 +36,45 @@ class App extends Component {
       day,
       db_name
     }
+    let searchUrl = "http://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro=2:&explaintext=1&titles="
     axios.get('/api', {
       params: api_params
     })
       .then(response => {
+        // Only update state if answer has changed.
         if (this.state.clue !== response.data.clue) {
-          let revealed = response.data.answer.split('').map(function (char) {
+          // Convert answer to array
+          let all_data = {}
+          all_data['data'] = response.data
+          all_data['revealed'] = response.data.answer.split('').map(function (char) {
             return char = ' ';
           })
-          this.setState({
-            "clue": response.data.clue,
-            "answer": response.data.answer,
-            "revealed": revealed,
-            "_id": response.data._id
-          })
+          all_data['wiki_data'] = []
+          // Call Wikipedia API
+          fetch(searchUrl + response.data.wiki)
+            .then(response => response.json())
+            .then(data => {
+              let pageIds = Object.keys(data.query.pages)
+              for (let i = 0; i < pageIds.length; i++) {
+                let link_ext = data.query.pages[pageIds[i]].title.replace(/\s+/g, '_')
+                all_data['wiki_data'].push({
+                  "name": link_ext,
+                  "url": `https://en.wikipedia.org/wiki/${link_ext}`,
+                  "extract": data.query.pages[pageIds[i]].extract
+                })
+              }
+            })
+          return all_data
         }
+      }).then(response => {
+        this.setState({
+          "clue": response['data'].clue,
+          "answer": response['data'].answer,
+          "revealed": response['revealed'],
+          "reveal_wiki": false,
+          "wiki_data": response['wiki_data'],
+          "_id": response['data']._id
+        })
       })
   }
 
@@ -58,9 +85,6 @@ class App extends Component {
   }
 
   updateFilter(filter) {
-    if (filter === "Names") {
-      filter = "Days"
-    }
     this.setState({
       db_name: filter
     }, () => this.callAPI())
@@ -107,6 +131,12 @@ class App extends Component {
     this.callAPI()
   }
 
+  handleClick() {
+    this.setState(prevState => ({
+      reveal_wiki: !prevState.reveal_wiki
+    }))
+  }
+
   render() {
     return (
       <div className="container-md" id="app-container" >
@@ -119,6 +149,7 @@ class App extends Component {
             handleInput={this.handleNewClue}
             handleReveal={this.updateReveal}
             handleDelete={this.handleDelete}
+            handleClick={this.handleClick}
           />
           <Sidebar
             onDayChange={this.updateDay}

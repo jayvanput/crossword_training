@@ -1,11 +1,13 @@
 import { Component } from 'react'
-import ClueBox from './ClueBox'
+import ClueBox from './ClueBox/ClueBox'
+import AnswerInfo from './AnswerInfo/AnswerInfo'
 export default class Interface extends Component {
     constructor(props) {
         super(props);
         this.handleInput = this.handleInput.bind(this);
         this.handleReveal = this.handleReveal.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleInput(guess) {
@@ -19,12 +21,16 @@ export default class Interface extends Component {
     handleDelete() {
         this.props.handleDelete()
     }
+
+    handleClick() {
+        this.props.handleClick()
+    }
+
+
     render() {
-        let { _id, day, start_date, end_date, clue, answer, revealed } = this.props.values
+        let { _id, day, clue, answer, revealed, reveal_wiki, wiki_data } = this.props.values
         let api_params = {
             day,
-            start_date,
-            end_date,
             _id
         }
         return (
@@ -37,6 +43,11 @@ export default class Interface extends Component {
                     handleInput={this.handleInput}
                     handleReveal={this.handleReveal}
                     handleDelete={this.handleDelete}
+                />
+                <AnswerInfo
+                    wiki_data={wiki_data}
+                    reveal_wiki={reveal_wiki}
+                    handleClick={this.handleClick}
                 />
             </div>
         )
