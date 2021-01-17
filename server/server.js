@@ -22,11 +22,12 @@ const dbName = 'Crosswordese'
 MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mongodb.net/test?retryWrites=true&w=majority", { useUnifiedTopology: true })
     .then(client => {
         console.log("Connected successfully to db");
-        const db = client.db(dbName);
 
         // Routes
         app.get('/api', (req, res) => {
             let day = req.query.day
+            let db_name = req.query.db_name
+            const db = client.db(db_name);
             const cluesCollection = db.collection(day)
             cluesCollection.aggregate([{ $sample: { size: 1 } }]).toArray()
                 .then(arr => {
@@ -45,7 +46,6 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
                     return arr[rand_idx]
                 })
                 .then(value => {
-                    console.log(value)
                     res.json(value)
                 })
         })

@@ -12,9 +12,11 @@ class App extends Component {
       "day": "Monday",
       "clue": "",
       "answer": " ",
-      "revealed": [" ", " ", " ", " ", " ", " ", " "]
+      "revealed": [" ", " ", " ", " ", " ", " ", " "],
+      "db_name": "Crosswordese"
     }
     this.updateDay = this.updateDay.bind(this)
+    this.updateFilter = this.updateFilter.bind(this)
     this.callAPI = this.callAPI.bind(this)
     this.handleNewClue = this.handleNewClue.bind(this)
     this.updateReveal = this.updateReveal.bind(this)
@@ -26,11 +28,10 @@ class App extends Component {
   }
 
   callAPI() {
-    let { day, start_date, end_date } = this.state
+    let { day, db_name } = this.state
     let api_params = {
       day,
-      start_date,
-      end_date
+      db_name
     }
     axios.get('/api', {
       params: api_params
@@ -53,8 +54,16 @@ class App extends Component {
   updateDay(day) {
     this.setState({
       day
-    })
-    this.callAPI()
+    }, () => this.callAPI())
+  }
+
+  updateFilter(filter) {
+    if (filter === "Names") {
+      filter = "Days"
+    }
+    this.setState({
+      db_name: filter
+    }, () => this.callAPI())
   }
 
   updateReveal() {
@@ -105,16 +114,15 @@ class App extends Component {
           <Header />
         </div>
         <div className="row">
-          <Sidebar
-            filter={this.handleFilter}
-            onDayCheck={this.updateDay}
-            onDateChange={this.updateDates}
-          />
           <Interface
             values={this.state}
             handleInput={this.handleNewClue}
             handleReveal={this.updateReveal}
             handleDelete={this.handleDelete}
+          />
+          <Sidebar
+            onDayChange={this.updateDay}
+            onFilterChange={this.updateFilter}
           />
         </div>
       </div>

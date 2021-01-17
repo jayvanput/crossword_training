@@ -1,29 +1,31 @@
 import { Component } from 'react'
 import './Sidebar.css'
 import DayFilter from './DayFilter'
+import TypeFilter from './TypeFilter'
 
 export default class Sidebar extends Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleDayCheck = this.handleDayCheck.bind(this)
+        this.handleDay = this.handleDay.bind(this)
+        this.handleFilter = this.handleFilter.bind(this)
     }
 
-    handleSubmit(e) {
-        e.preventDefault()
-        console.log(e.target.value)
-        this.props.filter()
+    handleDay(day) {
+        this.props.onDayChange(day)
     }
 
-    handleDayCheck(day) {
-        this.props.onDayCheck(day)
+    handleFilter(type) {
+        this.props.onFilterChange(type)
     }
 
     render() {
         return (
-            <div className="col-12 col-md-3" id="sidebar">
+            <div className="col-12 col-md-3 order-md-first" id="sidebar">
                 <div className="row" id="dayfilter">
-                    <DayFilter onChangeChk={this.handleDayCheck} />
+                    <DayFilter onChangeChk={this.handleDay} />
+                </div>
+                <div className="row" id="dayfilter">
+                    <TypeFilter onChangeChk={this.handleFilter} />
                 </div>
             </div >
         )

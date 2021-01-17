@@ -24,7 +24,6 @@ export default class ClueBox extends Component {
         let { answer, revealed } = this.props;
         // Handle enter
         if (e.key === "Enter") {
-            console.log("Enter")
             if (guess.toUpperCase() === answer) {
                 this.props.handleInput()
                 this.inputUpdate(e.target, "lightgreen")
