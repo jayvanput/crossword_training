@@ -44,7 +44,7 @@ export default class ClueBox extends Component {
 
     render() {
         let { clue, answer, revealed } = this.props
-        let { _id, day } = this.props.api_params
+        let { _id, day, db_name } = this.props.api_params
         return (
             <div className="row" >
                 <div className="col">
@@ -66,6 +66,7 @@ export default class ClueBox extends Component {
                             <DeleteButton
                                 id={_id}
                                 day={day}
+                                db_name={db_name}
                                 delete_action={this.handleDelete}
                             />
                         </div>

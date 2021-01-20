@@ -36,22 +36,20 @@ class App extends Component {
       day,
       db_name
     }
-    let searchUrl = "http://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro=2:&explaintext=1&titles="
     axios.get('/api', {
       params: api_params
     })
       .then(response => {
-        // Only update state if answer has changed.
-        if (this.state.clue !== response.data.clue) {
-          // Convert answer to array
-          let all_data = {}
-          all_data['data'] = response.data
-          all_data['revealed'] = response.data.answer.split('').map(function (char) {
-            return char = ' ';
-          })
-          all_data['wiki_data'] = []
-          // Call Wikipedia API
-          fetch(searchUrl + response.data.wiki)
+        let all_data = {}
+        all_data['data'] = response.data
+        all_data['revealed'] = response.data.answer.split('').map(function (char) {
+          return char = ' ';
+        })
+        all_data['wiki_data'] = []
+        // Call Wikipedia API if link exists.
+        if (response.data.wiki) {
+          let queryUrl = "http://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro=2:&explaintext=1&titles="
+          fetch(queryUrl + response.data.wiki)
             .then(response => response.json())
             .then(data => {
               let pageIds = Object.keys(data.query.pages)
@@ -64,8 +62,18 @@ class App extends Component {
                 })
               }
             })
-          return all_data
+        } else {
+          let searchUrl = "https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&format=json&search="
+          axios.get(searchUrl + all_data['data'].answer)
+            .then(response => {
+              for (let index = 0; index < response.data[3].length; index++) {
+                all_data['wiki_data'].push(
+                  response.data[3][index]
+                )
+              }
+            })
         }
+        return all_data
       }).then(response => {
         this.setState({
           "clue": response['data'].clue,

@@ -39,20 +39,24 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
                             day: 'Monday',
                             number: '25A',
                             clue: 'Date range is too small!',
-                            answer: '_'
+                            answer: '_',
+                            wiki: ''
                         })
                     }
                     const rand_idx = Math.floor(Math.random() * arr.length)
                     return arr[rand_idx]
                 })
                 .then(value => {
+                    console.log(value)
                     res.json(value)
                 })
         })
         // app.post()
         // app.put()
         app.delete('/api', (req, res) => {
-            day = req.query.day
+            const day = req.query.day
+            const db_name = req.query.db_name
+            const db = client.db(db_name);
             const cluesCollection = db.collection(day)
             object_id = req.query.id
             cluesCollection.deleteOne({

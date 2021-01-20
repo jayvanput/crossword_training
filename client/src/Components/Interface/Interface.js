@@ -28,10 +28,11 @@ export default class Interface extends Component {
 
 
     render() {
-        let { _id, day, clue, answer, revealed, reveal_wiki, wiki_data } = this.props.values
+        let { _id, day, clue, answer, revealed, db_name, reveal_wiki, wiki_data } = this.props.values
         let api_params = {
             day,
-            _id
+            _id,
+            db_name
         }
         return (
             <div className="col" id="interface">
