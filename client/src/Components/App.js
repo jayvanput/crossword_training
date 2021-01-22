@@ -63,15 +63,7 @@ class App extends Component {
               }
             })
         } else {
-          let searchUrl = "https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&format=json&search="
-          axios.get(searchUrl + all_data['data'].answer)
-            .then(response => {
-              for (let index = 0; index < response.data[3].length; index++) {
-                all_data['wiki_data'].push(
-                  response.data[3][index]
-                )
-              }
-            })
+          all_data['wiki_data'] = ""
         }
         return all_data
       }).then(response => {

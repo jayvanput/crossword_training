@@ -24,9 +24,9 @@ export default class Sidebar extends Component {
                 <div className="row" id="dayfilter">
                     <DayFilter onChangeChk={this.handleDay} />
                 </div>
-                <div className="row" id="dayfilter">
+                {/*<div className="row" id="dayfilter">
                     <TypeFilter onChangeChk={this.handleFilter} />
-                </div>
+                </div>*/}
             </div >
         )
     }
