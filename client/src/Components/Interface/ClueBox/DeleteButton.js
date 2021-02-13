@@ -1,6 +1,5 @@
 import { Component } from 'react'
-import axios from 'axios'
-
+import './DeleteButton.css'
 export default class DeleteButton extends Component {
     constructor(props) {
         super(props);
@@ -12,13 +11,13 @@ export default class DeleteButton extends Component {
     }
 
     render() {
-        const btn_size = this.props.buttonSize
         return (
             <button
                 type="submit"
-                className={`btn btn-danger btn-${btn_size} ${btn_size}-2`}
+                className="report-button"
                 onClick={this.handleClick}
-            >Delete
+                title={this.props.title}
+            >X
             </button>
         )
     }

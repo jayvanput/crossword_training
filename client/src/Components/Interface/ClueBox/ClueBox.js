@@ -24,7 +24,10 @@ export default class ClueBox extends Component {
         let { answer, revealed } = this.props;
         // Handle info reveal
         if (guess === "?") {
-            document.getElementById("header").click()
+            const header = document.getElementById("header")
+            if (header) {
+                header.click()
+            }
             e.target.value = ""
         }
         // Handle enter
@@ -49,12 +52,17 @@ export default class ClueBox extends Component {
 
     render() {
         let { clue, answer, revealed } = this.props
-        let { _id, day, db_name } = this.props.api_params
         return (
             <div className="row" id="cluebox">
                 <div className="col">
                     <div className="card" id="card-row">
                         <div className="card-body  text-center">
+                            <div className="report-button-header">
+                                <DeleteButton
+                                    handleDelete={this.handleDelete}
+                                    title="Report problem with clue"
+                                />
+                            </div>
                             <ClueText
                                 clue={clue}
                                 answer={answer} />
@@ -62,15 +70,11 @@ export default class ClueBox extends Component {
                                 answer={answer}
                                 revealed={revealed}
                             />
-                            <button type="submit" className="btn btn-primary btn-md m-2">Reveal letter</button>
                             <input
                                 aria-label="guess_input"
                                 type="text"
+                                placeholder='"?" to toggle Learn More'
                                 onKeyPress={this.handleInput}
-                            />
-                            <DeleteButton
-                                handleDelete={this.handleDelete}
-                                buttonSize="m"
                             />
                         </div>
                     </div>

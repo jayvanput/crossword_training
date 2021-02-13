@@ -38,7 +38,7 @@ export default class AnswerInfo extends Component {
                                     <h1 key={idx + 1} id="name">{names[idx]}</h1>
                                     <DeleteButton
                                         handleDelete={this.handleDelete}
-                                        buttonSize="l"
+                                        title="Report problem with link"
                                     />
                                 </div>
                                 <hr></hr>

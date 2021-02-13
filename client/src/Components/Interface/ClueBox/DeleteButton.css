@@ -1,0 +1,17 @@
+.report-button{
+    background-color: #f5443e;
+    color:white;
+    border:none;
+    border-radius: 10%;
+    margin: 10px;
+}
+
+.button-container, .tip{
+    display: inline-block;
+}
+
+.tip{
+    position: relative;
+    top:10px;
+    height: 1px;
+}

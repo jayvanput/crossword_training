@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import './Sidebar.css'
 import DayFilter from './DayFilter'
-import TypeFilter from './TypeFilter'
 
 export default class Sidebar extends Component {
     constructor(props) {
