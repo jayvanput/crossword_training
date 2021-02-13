@@ -48,7 +48,7 @@ class App extends Component {
         all_data['wiki_data'] = []
         // Call Wikipedia API if link exists.
         if (response.data.wiki) {
-          let queryUrl = "http://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro=2:&explaintext=1&titles="
+          let queryUrl = "https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro=2:&explaintext=1&titles="
           fetch(queryUrl + response.data.wiki)
             .then(response => response.json())
             .then(data => {
