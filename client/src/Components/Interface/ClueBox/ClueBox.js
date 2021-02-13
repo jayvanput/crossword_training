@@ -46,7 +46,7 @@ export default class ClueBox extends Component {
         let { clue, answer, revealed } = this.props
         let { _id, day, db_name } = this.props.api_params
         return (
-            <div className="row" >
+            <div className="row" id="cluebox">
                 <div className="col">
                     <div className="card" id="card-row">
                         <div className="card-body  text-center">

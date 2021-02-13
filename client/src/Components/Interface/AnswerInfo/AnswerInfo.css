@@ -7,11 +7,45 @@
 
 #header {
     height: 3vh;
+    background-color: #8baff1;
+    display: flex;
+    justify-content: center;
 }
 
-#body {
+#text, #name, #url{
+    margin:10px;
 }
 
+#text{
+    position: relative;
+    max-height: 200px;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+#text:before {
+    position: absolute;
+    bottom: 0;  
+    height: 100%;
+    width: 100%;
+    content: "";
+    background: linear-gradient(rgba(255,255,255, 0) 75%,
+       rgba(255,255,255, 1) 
+    );
+  }
+
+hr{
+    margin-top: 0;
+}
+
+#url{
+    display: flex;
+    justify-content: center;
+}
+
+#url a{
+    margin: 0 5px;
+}
 .hidden {
     display: none;
 }
