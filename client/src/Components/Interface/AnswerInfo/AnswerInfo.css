@@ -6,11 +6,12 @@
 }
 
 #header {
-    height: 3vh;
+    height: 4vh;
     background-color: #8baff1;
     display: flex;
     cursor: pointer;
     justify-content: center;
+    align-items: center;
 }
 
 #text_header{
@@ -29,7 +30,7 @@
 
 #text{
     position: relative;
-    max-height: 200px;
+    max-height: 175px;
     overflow: hidden;
     margin-bottom: 0;
 }

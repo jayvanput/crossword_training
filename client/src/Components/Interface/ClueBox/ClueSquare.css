@@ -1,11 +1,13 @@
 .square {
-    display: block;
+    display: flex;
     border: 1px solid gray;
     height: 5vh;
+    padding: 1px;
     width:5vh;
+    justify-content: center;
+    align-items: center;
 }
 
 span {
-    padding: 0;
     font-size: 4vh;
 }
