@@ -130,7 +130,7 @@ class App extends Component {
   handleDelete() {
     let { _id, day } = this.state
     let api_params = {
-      _id,
+      "id": _id,
       day
     }
     axios.delete('/api', {

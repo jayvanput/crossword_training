@@ -13,6 +13,16 @@
     justify-content: center;
 }
 
+#text_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-danger{
+    margin: 5px;
+}
+
 #text, #name, #url{
     margin:10px;
 }

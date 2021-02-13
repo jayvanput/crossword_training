@@ -8,13 +8,15 @@ export default class DeleteButton extends Component {
     }
 
     handleClick() {
-        this.props.delete_action()
+        this.props.handleDelete()
     }
+
     render() {
+        const btn_size = this.props.buttonSize
         return (
             <button
                 type="submit"
-                className="btn btn-danger btn-m m-2"
+                className={`btn btn-danger btn-${btn_size} ${btn_size}-2`}
                 onClick={this.handleClick}
             >Delete
             </button>

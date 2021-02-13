@@ -69,10 +69,8 @@ export default class ClueBox extends Component {
                                 onKeyPress={this.handleInput}
                             />
                             <DeleteButton
-                                id={_id}
-                                day={day}
-                                db_name={db_name}
-                                delete_action={this.handleDelete}
+                                handleDelete={this.handleDelete}
+                                buttonSize="m"
                             />
                         </div>
                     </div>

@@ -1,14 +1,20 @@
 import { Component } from 'react'
 import './AnswerInfo.css'
-
+import '../ClueBox/DeleteButton'
+import DeleteButton from '../ClueBox/DeleteButton'
 export default class AnswerInfo extends Component {
     constructor(props) {
         super(props)
         this.handleClick = this.handleClick.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     handleClick() {
         this.props.handleClick()
+    }
+
+    handleDelete() {
+        this.props.handleDelete()
     }
 
     render() {
@@ -28,9 +34,15 @@ export default class AnswerInfo extends Component {
                         entry.name
                             ?
                             <div key={idx}>
-                                <h1 key={idx + 1} id="name">{names[idx]}</h1>
+                                <div id="text_header">
+                                    <h1 key={idx + 1} id="name">{names[idx]}</h1>
+                                    <DeleteButton
+                                        handleDelete={this.handleDelete}
+                                        buttonSize="l"
+                                    />
+                                </div>
                                 <hr></hr>
-                                <div key={idx + 2} id="text">{entry.extract}...</div>
+                                <div key={idx + 2} id="text">{entry.extract}</div>
                                 <hr></hr>
                                 <div key={idx + 3} id="url">Click <a href={entry.url}>Here</a> to read more.</div>
                             </div>
