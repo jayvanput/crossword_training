@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      _id: "5ff140e1b4bd587341841c55",
+      "_id": "5ff140e1b4bd587341841c55",
       "day": "Monday",
       "clue": "",
       "answer": " ",
@@ -128,7 +128,14 @@ class App extends Component {
   }
 
   handleDelete() {
-    this.callAPI()
+    let { _id, day } = this.state
+    let api_params = {
+      _id,
+      day
+    }
+    axios.delete('/api', {
+      params: api_params
+    })
   }
 
   handleClick() {

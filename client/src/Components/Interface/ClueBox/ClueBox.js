@@ -22,8 +22,13 @@ export default class ClueBox extends Component {
     handleInput(e) {
         let guess = e.target.value
         let { answer, revealed } = this.props;
+        // Handle info reveal
+        if (guess === "?") {
+            document.getElementById("header").click()
+            e.target.value = ""
+        }
         // Handle enter
-        if (e.key === "Enter") {
+        else if (e.key === "Enter") {
             if (guess.toUpperCase() === answer) {
                 this.props.handleInput()
                 this.inputUpdate(e.target, "lightgreen")
@@ -57,7 +62,7 @@ export default class ClueBox extends Component {
                                 answer={answer}
                                 revealed={revealed}
                             />
-                            <button type="submit" className="btn btn-info btn-md m-2">Reveal letter</button>
+                            <button type="submit" className="btn btn-primary btn-md m-2">Reveal letter</button>
                             <input
                                 aria-label="guess_input"
                                 type="text"

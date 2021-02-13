@@ -9,6 +9,7 @@
     height: 3vh;
     background-color: #8baff1;
     display: flex;
+    cursor: pointer;
     justify-content: center;
 }
 

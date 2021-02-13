@@ -54,16 +54,12 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
         // app.post()
         // app.put()
         app.delete('/api', (req, res) => {
-            const day = req.query.day
-            const db_name = req.query.db_name
-            const db = client.db(db_name);
-            const cluesCollection = db.collection(day)
-            object_id = req.query.id
-            cluesCollection.deleteOne({
-                "_id": ObjectId(req.query.id)
-            }).then(response => {
-                res.send("Ok")
-            })
+            const db = client.db("Crosswordese");
+            const errorCollection = db.collection("Errors")
+            errorCollection.insertOne(req.query)
+                .then(response => {
+                    res.send("Ok")
+                })
         })
     })
 

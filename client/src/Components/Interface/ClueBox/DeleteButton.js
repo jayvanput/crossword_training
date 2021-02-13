@@ -8,21 +8,13 @@ export default class DeleteButton extends Component {
     }
 
     handleClick() {
-        axios.delete('/api', {
-            params: {
-                id: this.props.id,
-                day: this.props.day,
-                db_name: this.props.db_name
-            }
-        }).then(response => {
-            this.props.delete_action()
-        })
+        this.props.delete_action()
     }
     render() {
         return (
             <button
                 type="submit"
-                className="btn btn-danger btn-sm m-2"
+                className="btn btn-danger btn-m m-2"
                 onClick={this.handleClick}
             >Delete
             </button>
