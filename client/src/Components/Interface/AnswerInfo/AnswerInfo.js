@@ -44,7 +44,7 @@ export default class AnswerInfo extends Component {
                                 <hr></hr>
                                 <div key={idx + 2} id="text">{entry.extract}</div>
                                 <hr></hr>
-                                <div key={idx + 3} id="url">Click <a href={entry.url}>here</a> to read more.</div>
+                                <div key={idx + 3} id="url">Click <a href={entry.url} target="_blank" rel="noopener noreferrer">here</a> to read more.</div>
                             </div>
                             :
                             <div key={idx}>
