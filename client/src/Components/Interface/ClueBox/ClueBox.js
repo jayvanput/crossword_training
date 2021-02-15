@@ -9,6 +9,7 @@ export default class ClueBox extends Component {
         this.handleInput = this.handleInput.bind(this)
         this.inputUpdate = this.inputUpdate.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
+        this.handleSkip = this.handleSkip.bind(this)
     }
 
     inputUpdate(input, color) {
@@ -50,6 +51,10 @@ export default class ClueBox extends Component {
         this.props.handleDelete()
     }
 
+    handleSkip() {
+        this.props.handleSkip()
+    }
+
     render() {
         let { clue, answer, revealed } = this.props
         return (
@@ -76,6 +81,13 @@ export default class ClueBox extends Component {
                                 placeholder='"?" to toggle Learn More'
                                 onKeyPress={this.handleInput}
                             />
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={this.handleSkip}
+                            >
+                                Skip Clue
+                            </button>
                         </div>
                     </div>
                 </div>

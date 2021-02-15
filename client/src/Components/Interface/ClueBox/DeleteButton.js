@@ -17,7 +17,7 @@ export default class DeleteButton extends Component {
                 className="report-button"
                 onClick={this.handleClick}
                 title={this.props.title}
-            >X
+            >!
             </button>
         )
     }

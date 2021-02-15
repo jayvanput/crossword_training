@@ -47,19 +47,23 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
                     return arr[rand_idx]
                 })
                 .then(value => {
-                    console.log(value)
                     res.json(value)
                 })
         })
         // app.post()
         // app.put()
         app.delete('/api', (req, res) => {
-            const db = client.db("Crosswordese");
+            const db = client.db(dbName);
+            const day = req.query.day
+            const _id = req.query.id
+            console.log(_id)
+            // Add to error collection.
             const errorCollection = db.collection("Errors")
             errorCollection.insertOne(req.query)
                 .then(response => {
                     res.send("Ok")
                 })
+
         })
     })
 

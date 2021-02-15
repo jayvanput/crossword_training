@@ -158,6 +158,7 @@ class App extends Component {
             handleReveal={this.updateReveal}
             handleDelete={this.handleDelete}
             handleClick={this.handleClick}
+            handleSkip={this.callAPI}
           />
           <Sidebar
             onDayChange={this.updateDay}

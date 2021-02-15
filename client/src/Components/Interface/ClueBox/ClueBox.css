@@ -13,6 +13,10 @@ input::placeholder{
     opacity: .5;
 }
 
+.btn-primary{
+    margin-left: 2%;
+}
+
 .report-button-header{
     display: flex;
     margin: none;

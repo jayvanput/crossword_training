@@ -1,9 +1,8 @@
-import Navbar from 'react-bootstrap/Navbar'
-
+import './Header.css'
 export default function Header() {
     return (
-        <Navbar style={{ backgroundColor: "#4d88f9" }} className="col">
-            <Navbar.Brand >Crossword Training</Navbar.Brand>
-        </Navbar >
+        <nav className="col">
+            <a className="header-a" href="/" >Crossword Training</a>
+        </nav >
     )
 }

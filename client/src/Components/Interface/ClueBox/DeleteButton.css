@@ -1,9 +1,14 @@
 .report-button{
-    background-color: #f5443e;
+    background-color: #f5963e;
     color:white;
+    width:1.5em;
     border:none;
     border-radius: 10%;
     margin: 10px;
+}
+
+.report-button:hover{
+    background-color: #c7650a;
 }
 
 .button-container, .tip{

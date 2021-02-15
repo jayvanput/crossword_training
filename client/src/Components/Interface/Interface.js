@@ -8,12 +8,16 @@ export default class Interface extends Component {
         this.handleReveal = this.handleReveal.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleSkip = this.handleSkip.bind(this);
     }
 
     handleInput(guess) {
         this.props.handleInput(guess)
     }
 
+    handleSkip() {
+        this.props.handleSkip()
+    }
     handleReveal() {
         this.props.handleReveal()
     }
@@ -44,6 +48,7 @@ export default class Interface extends Component {
                     handleInput={this.handleInput}
                     handleReveal={this.handleReveal}
                     handleDelete={this.handleDelete}
+                    handleSkip={this.handleSkip}
                 />
                 {wiki_data ? <AnswerInfo
                     wiki_data={wiki_data}
