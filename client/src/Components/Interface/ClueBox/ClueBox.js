@@ -78,7 +78,7 @@ export default class ClueBox extends Component {
                             <input
                                 aria-label="guess_input"
                                 type="text"
-                                placeholder='"?" to toggle Learn More'
+                                placeholder='Enter Answer'
                                 onKeyPress={this.handleInput}
                             />
                             <button

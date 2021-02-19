@@ -50,12 +50,12 @@ export default class Interface extends Component {
                     handleDelete={this.handleDelete}
                     handleSkip={this.handleSkip}
                 />
-                {wiki_data ? <AnswerInfo
+                <AnswerInfo
                     wiki_data={wiki_data}
                     reveal_wiki={reveal_wiki}
                     handleClick={this.handleClick}
                     handleDelete={this.handleDelete}
-                /> : <div></div>}
+                />
             </div>
         )
     }

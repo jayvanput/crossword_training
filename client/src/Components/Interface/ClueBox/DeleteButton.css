@@ -1,7 +1,6 @@
 .report-button{
     background-color: #f5963e;
     color:white;
-    width:1.5em;
     border:none;
     border-radius: 10%;
     margin: 10px;
@@ -11,12 +10,6 @@
     background-color: #c7650a;
 }
 
-.button-container, .tip{
+.button-container{
     display: inline-block;
-}
-
-.tip{
-    position: relative;
-    top:10px;
-    height: 1px;
 }

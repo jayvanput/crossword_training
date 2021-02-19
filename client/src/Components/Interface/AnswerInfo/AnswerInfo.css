@@ -70,6 +70,15 @@ hr{
     display: none;
 }
 
+#no-wiki-header {
+    height: 4vh;
+    background-color: #cccccc;
+    display: flex;
+    cursor:not-allowed;
+    justify-content: center;
+    align-items: center;
+}
+
 @media screen and (max-width: 1024px) {
     #box {
         width: 80%;
