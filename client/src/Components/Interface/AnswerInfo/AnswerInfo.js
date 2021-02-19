@@ -40,7 +40,7 @@ export default class AnswerInfo extends Component {
                                             <h1 key={idx + 1} id="name">{names[idx]}</h1>
                                             <DeleteButton
                                                 handleDelete={this.handleDelete}
-                                                title="Report problem with link"
+                                                text="Report Link"
                                             />
                                         </div>
                                         <hr></hr>

@@ -65,9 +65,10 @@ export default class ClueBox extends Component {
                             <div className="report-button-header">
                                 <DeleteButton
                                     handleDelete={this.handleDelete}
-                                    title="Report problem with clue"
+                                    text="Report Clue"
                                 />
                             </div>
+
                             <ClueText
                                 clue={clue}
                                 answer={answer} />
@@ -83,7 +84,7 @@ export default class ClueBox extends Component {
                             />
                             <button
                                 type="button"
-                                className="btn btn-primary"
+                                className="btn btn-danger"
                                 onClick={this.handleSkip}
                             >
                                 Skip Clue

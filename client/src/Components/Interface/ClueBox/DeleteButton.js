@@ -16,7 +16,7 @@ export default class DeleteButton extends Component {
                 type="submit"
                 className="btn btn-outline-warning btn-sm"
                 onClick={this.handleClick}
-            >Report Clue
+            >{this.props.text}
             </button>
         )
     }

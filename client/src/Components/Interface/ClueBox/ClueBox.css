@@ -3,6 +3,7 @@
     margin: 15% auto;
     margin-bottom: 10%;
 }
+
 input {
     margin: 20px auto;
     width: 85%;
@@ -12,14 +13,16 @@ input::placeholder{
     opacity: .5;
 }
 
-.btn-primary{
-    margin-left: 2%;
-}
-
 .report-button-header{
     display: flex;
     margin: none;
     justify-content: flex-end;
+}
+
+@media screen and (max-width:767px) {
+    .btn-danger{
+        width: 80%;
+    }
 }
 
 @media screen and (min-width: 768px) {

@@ -21,7 +21,9 @@
 #text_header{
     display: flex;
     justify-content: space-between;
+    padding-right: 1%;
     align-items: center;
+
 }
 
 .btn-danger{
