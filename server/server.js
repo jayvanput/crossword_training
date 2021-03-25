@@ -10,7 +10,7 @@ require('dotenv').config();
 
 // Set up middleware
 const app = express();
-//app.use(helmet());
+app.use(helmet());
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
@@ -38,7 +38,7 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
                             date: '1994-04-18',
                             day: 'Monday',
                             number: '25A',
-                            clue: 'Date range is too small!',
+                            clue: 'Error',
                             answer: '_',
                             wiki: ''
                         })
@@ -67,7 +67,7 @@ MongoClient.connect("mongodb+srv://jvp119:Thequickbrownfox1!@cluster0.2yvlj.mong
         })
     })
 
-const port = process.env.PORT || 4000;
+const port = 4000;
 // Production path to React App
 if (process.env.NODE_ENV === "production") {
 

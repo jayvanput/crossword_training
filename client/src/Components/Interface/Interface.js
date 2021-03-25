@@ -9,6 +9,7 @@ export default class Interface extends Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleSkip = this.handleSkip.bind(this);
+        this.handleSquareClick = this.handleSquareClick.bind(this);
     }
 
     handleInput(guess) {
@@ -30,6 +31,9 @@ export default class Interface extends Component {
         this.props.handleClick()
     }
 
+    handleSquareClick(index) {
+        this.props.handleSquareClick(index)
+    }
 
     render() {
         let { _id, day, clue, answer, revealed, db_name, reveal_wiki, wiki_data } = this.props.values
@@ -49,6 +53,7 @@ export default class Interface extends Component {
                     handleReveal={this.handleReveal}
                     handleDelete={this.handleDelete}
                     handleSkip={this.handleSkip}
+                    handleSquareClick={this.handleSquareClick}
                 />
                 <AnswerInfo
                     wiki_data={wiki_data}

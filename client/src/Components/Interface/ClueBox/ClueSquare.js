@@ -1,9 +1,23 @@
 import './ClueSquare.css'
+import { Component } from 'react'
+export default class ClueSquare extends Component {
+    constructor(props) {
+        super(props)
+        this.handleClick = this.handleClick.bind(this)
+    }
 
-export default function ClueSquare(props) {
-    return (
-        <div className="square">
-            <span>{props.square}</span>
-        </div>
-    )
+    handleClick() {
+        this.props.handleClick(this.props.index)
+    }
+
+    render() {
+        return (
+            <div
+                className="square"
+                onClick={this.handleClick}
+            >
+                <span>{this.props.square}</span>
+            </div>
+        )
+    }
 }

@@ -6,45 +6,55 @@ import DeleteButton from './DeleteButton'
 export default class ClueBox extends Component {
     constructor(props) {
         super(props);
-        this.handleInput = this.handleInput.bind(this)
+        this.state = { value: "" }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.inputUpdate = this.inputUpdate.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.handleSkip = this.handleSkip.bind(this)
+        this.handleSquareClick = this.handleSquareClick.bind(this)
     }
 
-    inputUpdate(input, color) {
-        input.value = ""
-        input.style.backgroundColor = color
+    inputUpdate(color) {
+        const input_box = document.getElementById("guess_input")
+        input_box.value = ""
+        input_box.style.backgroundColor = color
         setTimeout(() => {
-            input.style.backgroundColor = "transparent"
+            input_box.style.backgroundColor = "transparent"
         }, 500)
     }
 
-    handleInput(e) {
-        let guess = e.target.value
+    handleSubmit(e) {
+        const guess = this.state.value
+        const input_box = document.getElementById("guess_input")
+        e.preventDefault()
         let { answer, revealed } = this.props;
-        // Handle info reveal
         if (guess === "?") {
+            // Reveal the wiki.
             const header = document.getElementById("header")
             if (header) {
                 header.click()
             }
-            e.target.value = ""
+            input_box.value = ""
         }
-        // Handle enter
-        else if (e.key === "Enter") {
+        else {
             if (guess.toUpperCase() === answer) {
                 this.props.handleInput()
-                this.inputUpdate(e.target, "lightgreen")
+                this.inputUpdate("lightgreen")
             } else {
                 if (!revealed.includes(" ")) {
                     this.props.handleInput()
                 } else {
-                    this.inputUpdate(e.target, "pink")
+                    this.inputUpdate("pink")
                     this.props.handleReveal()
                 }
             }
         }
+        this.setState({ value: "" })
+    }
+
+    handleChange(e) {
+        this.setState({ value: e.target.value })
     }
 
     handleDelete() {
@@ -53,6 +63,10 @@ export default class ClueBox extends Component {
 
     handleSkip() {
         this.props.handleSkip()
+    }
+
+    handleSquareClick(index) {
+        this.props.handleSquareClick(index)
     }
 
     render() {
@@ -75,20 +89,23 @@ export default class ClueBox extends Component {
                             <ClueSquares
                                 answer={answer}
                                 revealed={revealed}
+                                handleSkip={this.handleSkip}
+                                handleClick={this.handleSquareClick}
                             />
-                            <input
-                                aria-label="guess_input"
-                                type="text"
-                                placeholder='Enter Answer'
-                                onKeyPress={this.handleInput}
-                            />
-                            <button
-                                type="button"
-                                className="btn btn-danger"
-                                onClick={this.handleSkip}
-                            >
-                                Skip Clue
+                            <form onSubmit={this.handleSubmit}>
+                                <input
+                                    id="guess_input"
+                                    type="text"
+                                    placeholder='Enter Answer'
+                                    onChange={this.handleChange}
+                                />
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                >
+                                    Enter
                             </button>
+                            </form>
                         </div>
                     </div>
                 </div>

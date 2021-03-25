@@ -9,6 +9,10 @@ input {
     width: 85%;
 }
 
+button {
+    margin: 0 5px;
+}
+
 input::placeholder{
     opacity: .5;
 }

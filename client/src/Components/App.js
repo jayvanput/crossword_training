@@ -24,6 +24,7 @@ class App extends Component {
     this.updateReveal = this.updateReveal.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.revealSpecificSquare = this.revealSpecificSquare.bind(this)
   }
 
   componentDidMount() {
@@ -145,6 +146,19 @@ class App extends Component {
     }))
   }
 
+  revealSpecificSquare(index) {
+    let { revealed, answer } = this.state
+    if (revealed[index] !== " ") {
+      revealed[index] = " "
+    }
+    else {
+      revealed[index] = answer[index]
+    }
+    this.setState({
+      revealed
+    })
+  }
+
   render() {
     return (
       <div className="container-md" id="app-container" >
@@ -159,6 +173,7 @@ class App extends Component {
             handleDelete={this.handleDelete}
             handleClick={this.handleClick}
             handleSkip={this.callAPI}
+            handleSquareClick={this.revealSpecificSquare}
           />
           <Sidebar
             onDayChange={this.updateDay}

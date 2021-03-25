@@ -4,10 +4,26 @@
     height: 5vh;
     padding: 1px;
     width:5vh;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
 }
 
+.square:hover {
+    background-color: #E6EBE0;
+}
+
 span {
     font-size: 4vh;
+}
+
+@media screen and (max-width:767px) {
+    .square {
+        height: 7vh;
+        width: 7vh;
+    }
+
+    span {
+        font-size: 6vh;
+    }
 }
